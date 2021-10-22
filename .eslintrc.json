@@ -21,7 +21,6 @@
     "object-curly-spacing": [1, "always"],
     "indent": ["warn", 2],
     "linebreak-style": 0,
-    "semi": [1, "never"],
     "quotes": ["error", "single"],
     "no-unexpected-multiline": "warn",
     "keyword-spacing": 1,
