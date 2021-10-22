@@ -1,14 +1,15 @@
 import express from 'express';
-import { mapOder } from '*/utilities/sorts';
+import { connectDB } from '*/config/mongodb';
+import { env } from '*/config/environment';
+
 const app = express();
+
+connectDB().catch(console.log);
 
 app.get('/', (req, res) => {
   res.end('<h1>Hello world</h1>');
 });
 
-const hostname = 'localhost';
-const port = 8000;
-app.listen(port, hostname, () => {
-  // eslint-disable-next-line no-console
-  console.log('Server running on ', `http://${hostname}:${port}`);
+app.listen(env.PORT, env.HOST, () => {
+  console.log('Server running on ', `http://${env.HOST}:${env.PORT}`);
 });
