@@ -3,19 +3,30 @@
   "version": "1.0.0",
   "description": "APIs for trello clone ",
   "main": "src/server.js",
-  "type": "module",
   "repository": "git@github.com:hungtruthy/api__trello.git",
   "author": "hungtruthy",
   "license": "MIT",
   "scripts": {
     "eslint": "eslint src",
-    "dev": "nodemon src/server.js"
+    "clean": "rmdir /s /q build && mkdir build",
+    "build-babel": "babel ./src -d ./build/src",
+    "build": "npm run clean && npm run build-babel",
+    "production": "npm run build && node ./build/src/server.js",
+    "dev": "nodemon --exec ./node_modules/.bin/babel-node ./src/server.js"
   },
   "dependencies": {
+    "@babel/runtime": "^7.15.4",
     "express": "^4.17.1",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/eslint-parser": "^7.15.8",
+    "@babel/node": "^7.15.8",
+    "@babel/plugin-transform-runtime": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^8.0.1",
     "nodemon": "^2.0.14"
   }
