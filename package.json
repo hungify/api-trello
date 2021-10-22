@@ -1,0 +1,22 @@
+{
+  "name": "api__trello",
+  "version": "1.0.0",
+  "description": "APIs for trello clone ",
+  "main": "src/server.js",
+  "type": "module",
+  "repository": "git@github.com:hungtruthy/api__trello.git",
+  "author": "hungtruthy",
+  "license": "MIT",
+  "scripts": {
+    "eslint": "eslint src",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.1",
+    "nodemon": "^2.0.14"
+  }
+}
