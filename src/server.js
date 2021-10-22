@@ -1,15 +1,24 @@
 import express from 'express';
-import { connectDB } from '*/config/mongodb';
 import { env } from '*/config/environment';
+import { connectDB } from '*/config/mongodb';
+import { BoardModel } from '*/models/board.model';
 
-const app = express();
+connectDB()
+  .then(() => console.log('Connected DB'))
+  .then(() => bootServer())
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
 
-connectDB().catch(console.log);
+const bootServer = () => {
+  const app = express();
 
-app.get('/', (req, res) => {
-  res.end('<h1>Hello world</h1>');
-});
+  app.get('/test', async (req, res) => {
+    res.end('<h1>Hello world</h1>');
+  });
 
-app.listen(env.PORT, env.HOST, () => {
-  console.log('Server running on ', `http://${env.HOST}:${env.PORT}`);
-});
+  app.listen(env.APP_PORT, env.APP_HOST, () => {
+    console.log('Server running on ', `http://${env.APP_HOST}:${env.APP_PORT}`);
+  });
+};
