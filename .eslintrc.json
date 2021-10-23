@@ -11,6 +11,13 @@
     "sourceType": "module",
     "allowImportExportEverywhere": true
   },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["node_modules", "src/"]
+      }
+    }
+  },
   "rules": {
     "no-console": 0,
     "no-unused-vars": 1,

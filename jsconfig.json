@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "target": "es6",
+    "baseUrl": "./",
+    "target": "ES2021",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "paths": {
-      "*/*": ["src/*"]
+      "~/*": ["./src/*"]
     }
   },
   "include": ["src/**/*"],

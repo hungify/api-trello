@@ -1,6 +1,6 @@
 import Joi from 'joi';
-import { getDB } from '*/config/mongodb';
 import { ObjectId } from 'mongodb';
+import { getDB } from '~/config/mongodb';
 
 const boardCollectionName = 'boards';
 
@@ -35,9 +35,11 @@ const createNew = async (data) => {
       .collection(boardCollectionName)
       .insertOne(validateValue);
 
-    return result;
+    return await getDB()
+      .collection(boardCollectionName)
+      .findOne(result.insertedId);
   } catch (error) {
-    console.log('error: ', error);
+    throw new Error(error);
   }
 };
 export const BoardModel = { createNew, findOneById };
