@@ -1,5 +1,6 @@
+import { env } from './environment';
 const { MongoClient } = require('mongodb');
-import { env } from '*/config/environment';
+
 let dbInstance = null;
 
 export const connectDB = async () => {
