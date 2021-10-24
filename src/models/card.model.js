@@ -5,8 +5,8 @@ import { getDB } from '~/config/mongodb';
 const cardCollectionName = 'cards';
 
 const cardCollectionSchema = Joi.object({
-  boardId: Joi.string().required(),
-  columnId: Joi.string().required(),
+  boardId: Joi.string().required(), // also Object Id when create new
+  columnId: Joi.string().required(), // also Object Id when create new
   title: Joi.string().required().min(3).max(20).trim(),
   cover: Joi.string().default(null),
   createdAt: Joi.date().timestamp().default(Date.now()),
@@ -33,11 +33,15 @@ const findOneById = async (id) => {
 
 const createNew = async (data) => {
   try {
-    const validateValue = await validateSchema(data);
-
+    const validatedValue = await validateSchema(data);
+    const insertValue = {
+      ...validatedValue,
+      boardId: ObjectId(validatedValue.boardId),
+      columnId: ObjectId(validatedValue.columnId),
+    };
     const result = await getDB()
       .collection(cardCollectionName)
-      .insertOne(validateValue);
+      .insertOne(insertValue);
 
     return await getDB()
       .collection(cardCollectionName)
@@ -46,4 +50,4 @@ const createNew = async (data) => {
     throw new Error(error);
   }
 };
-export const CardModel = { createNew, findOneById };
+export const CardModel = { createNew, findOneById, cardCollectionName };

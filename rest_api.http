@@ -1,5 +1,6 @@
 @baseUrl=http://localhost:8000/api/v1
-### Boards
+
+### Boards ###
 
 # @name createNewBoard
 POST {{baseUrl}}/boards HTTP/1.1
@@ -9,17 +10,21 @@ Content-Type: application/json
   "title": "Hello world board"
 }
 
-### Columns
+###
+
+# @name getFullBoard
+GET  {{baseUrl}}/boards/617553cbd5ada8f2c313f7e4 HTTP/1.1
+
+### Columns ###
 
 # @name createNewColumn
 POST {{baseUrl}}/columns HTTP/1.1
 Content-Type: application/json
 
 {
-  "boardId": "617534395d7724d503803c82",
-  "title": "Hello world column"
+  "boardId": "617553cbd5ada8f2c313f7e4",
+  "title": "Column 2"
 }
-
 
 ###
 
@@ -31,16 +36,16 @@ Content-Type: application/json
   "title": "Hello world update"
 }
 
-### Cars
+### Cars ###
 
-# @name createNewColumn
+# @name createNewCard
 POST {{baseUrl}}/cards HTTP/1.1
 Content-Type: application/json
 
 {
-  "boardId": "617534395d7724d503803c82",
-  "columnId": "617534425d7724d503803c83",
-  "title": "Hello world card"
+  "boardId": "617553cbd5ada8f2c313f7e4",
+  "columnId": "61755e24b8018dda2e182971",
+  "title": "Card 1"
 }
 
 
