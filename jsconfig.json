@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "target": "ES2021",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,

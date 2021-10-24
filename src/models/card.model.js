@@ -1,13 +1,13 @@
 import Joi from 'joi';
-import { getDB } from '*/config/mongodb';
 import { ObjectId } from 'mongodb';
+import { getDB } from '~/config/mongodb';
 
-const cardCollectionName = 'column';
+const cardCollectionName = 'cards';
 
 const cardCollectionSchema = Joi.object({
   boardId: Joi.string().required(),
   columnId: Joi.string().required(),
-  title: Joi.string().required().min(3).max(20),
+  title: Joi.string().required().min(3).max(20).trim(),
   cover: Joi.string().default(null),
   createdAt: Joi.date().timestamp().default(Date.now()),
   updatedAt: Joi.date().timestamp().default(null),
@@ -34,12 +34,16 @@ const findOneById = async (id) => {
 const createNew = async (data) => {
   try {
     const validateValue = await validateSchema(data);
+
     const result = await getDB()
       .collection(cardCollectionName)
       .insertOne(validateValue);
-    return result;
+
+    return await getDB()
+      .collection(cardCollectionName)
+      .findOne(result.insertedId);
   } catch (error) {
-    console.log('error: ', error);
+    throw new Error(error);
   }
 };
 export const CardModel = { createNew, findOneById };

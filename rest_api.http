@@ -1,57 +1,48 @@
 @baseUrl=http://localhost:8000/api/v1
+### Boards
 
 # @name createNewBoard
 POST {{baseUrl}}/boards HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "Hello world"
+  "title": "Hello world board"
+}
+
+### Columns
+
+# @name createNewColumn
+POST {{baseUrl}}/columns HTTP/1.1
+Content-Type: application/json
+
+{
+  "boardId": "617534395d7724d503803c82",
+  "title": "Hello world column"
 }
 
 
-# Products
+###
 
-# # @name getAll
-# GET {{baseUrl}}/{{resourceName}}
+# @name updateColumn
+PUT {{baseUrl}}/columns/617534425d7724d503803c83 HTTP/1.1
+Content-Type: application/json
 
-# ###
+{
+  "title": "Hello world update"
+}
 
-# # @name filterProducts
-# GET {{baseUrl}}/{{resourceName}}?price_gte=900
+### Cars
 
-# ###
+# @name createNewColumn
+POST {{baseUrl}}/cards HTTP/1.1
+Content-Type: application/json
 
-# # @name filterProducts
-# GET {{baseUrl}}/{{resourceName}}?name_like=tasty
+{
+  "boardId": "617534395d7724d503803c82",
+  "columnId": "617534425d7724d503803c83",
+  "title": "Hello world card"
+}
 
-
-# ###
-
-# # @name pagination
-# GET {{baseUrl}}/{{resourceName}}?_page=1&_limit=20
-
-# ###
-
-# # @name sort
-# GET {{baseUrl}}/{{resourceName}}?_sort=price&_order=desc
-
-
-# ###
-
-# # @name addNew
-# POST {{baseUrl}}/{{resourceName}}
-# Content-Type: application/json
-
-# {
-#   "categoryId": "28759f7e-3509-4064-920a-406dd426033a",
-#   "name": "Tasty Plastic Chips",
-#   "color": "cyan",
-#   "price": 931,
-#   "description": "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
-#   "thumbnailUrl": "http://placeimg.com/400/400"
-# }
-
-# ###
 
 # # @name update
 # PATCH {{baseUrl}}/{{resourceName}}/KkSXxPt
