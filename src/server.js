@@ -3,7 +3,8 @@ import { env } from './config/environment';
 import { connectDB } from './config/mongodb';
 import { apiV1 } from './routes/v1';
 import morgan from 'morgan';
-
+import cors from 'cors';
+import { corsOptions } from './config/cors';
 connectDB()
   .then(() => console.log('Connected DB'))
   .then(() => bootServer())
@@ -14,6 +15,8 @@ connectDB()
 
 const bootServer = () => {
   const app = express();
+
+  app.use(cors(corsOptions));
   app.use(express.json());
   app.use(morgan('dev'));
 
