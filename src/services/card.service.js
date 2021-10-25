@@ -3,12 +3,18 @@ import { ColumnModel } from '~/models/column.model';
 
 const createNew = async (data) => {
   try {
-    const newCard = await CardModel.createNew(data);
-    const columnId = newCard.columnId.toString();
-    const newCardId = newCard._id.toString();
+    const createdCard = await CardModel.createNew(data);
 
-    await ColumnModel.pushCardOrder(columnId, newCardId);
-    return newCard;
+    const getNewCard = await CardModel.findOneById(
+      createdCard.insertedId.toString()
+    );
+
+    await ColumnModel.pushCardOrder(
+      getNewCard.columnId.toString(),
+      getNewCard._id.toString()
+    );
+
+    return getNewCard;
   } catch (error) {
     throw new Error(error);
   }

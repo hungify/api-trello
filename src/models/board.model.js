@@ -25,7 +25,7 @@ const findOneById = async (id) => {
       .findOne({ _id: ObjectId(id) });
     return result;
   } catch (error) {
-    console.log('error: ', error);
+    throw new Error(error);
   }
 };
 
@@ -37,9 +37,7 @@ const createNew = async (data) => {
       .collection(boardCollectionName)
       .insertOne(validateValue);
 
-    return await getDB()
-      .collection(boardCollectionName)
-      .findOne(result.insertedId);
+    return result;
   } catch (error) {
     throw new Error(error);
   }
@@ -50,7 +48,7 @@ const getFullBoard = async (boardId) => {
     const result = await getDB()
       .collection(boardCollectionName)
       .aggregate([
-        { $match: { _id: ObjectId(boardId) } },
+        { $match: { _id: ObjectId(boardId), _destroy: false } },
         {
           $lookup: {
             from: ColumnModel.columnCollectionName,
@@ -69,7 +67,6 @@ const getFullBoard = async (boardId) => {
         },
       ])
       .toArray();
-
     return result[0] || {};
   } catch (error) {
     throw new Error(error);
@@ -89,7 +86,7 @@ const pushColumnOrder = async (boardId, columnId) => {
       .findOneAndUpdate(
         { _id: ObjectId(boardId) },
         { $push: { columnOrder: columnId } },
-        { returnNewDocument: true }
+        { returnDocument: 'after' }
       );
     return result.value;
   } catch (error) {
