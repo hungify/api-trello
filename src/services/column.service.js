@@ -1,16 +1,22 @@
 import { BoardModel } from '~/models/board.model';
 import { ColumnModel } from '~/models/column.model';
+import { CardModel } from '~/models/card.model';
 
 const createNew = async (data) => {
   try {
-    const newColumn = await ColumnModel.createNew(data);
+    const createdColumn = await ColumnModel.createNew(data);
 
-    const boardId = newColumn.boardId.toString();
-    const newColumnId = newColumn._id.toString();
+    const getNewColumn = await ColumnModel.findOneById(
+      createdColumn.insertedId.toString()
+    );
+    getNewColumn.cards = [];
 
-    await BoardModel.pushColumnOrder(boardId, newColumnId);
+    await BoardModel.pushColumnOrder(
+      getNewColumn.boardId.toString(),
+      getNewColumn._id.toString()
+    );
 
-    return newColumn;
+    return getNewColumn;
   } catch (error) {
     throw new Error(error);
   }
@@ -22,9 +28,14 @@ const update = async (id, data) => {
       ...data,
       updatedAt: Date.now(),
     };
-    const result = await ColumnModel.update(id, updateData);
-
-    return result;
+    if (updateData._id) delete updateData._id;
+    if (updateData.cards) delete updateData.cards;
+    const updatedColumn = await ColumnModel.update(id, updateData);
+    if (updatedColumn._destroy) {
+      // Delete all cards in column
+      CardModel.deleteMany(updatedColumn.cardOrder);
+    }
+    return updatedColumn;
   } catch (error) {
     throw new Error(error);
   }

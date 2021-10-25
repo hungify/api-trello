@@ -27,7 +27,7 @@ const findOneById = async (id) => {
       .findOne({ _id: ObjectId(id) });
     return result;
   } catch (error) {
-    console.log('error: ', error);
+    throw new Error(error);
   }
 };
 
@@ -43,11 +43,31 @@ const createNew = async (data) => {
       .collection(cardCollectionName)
       .insertOne(insertValue);
 
-    return await getDB()
-      .collection(cardCollectionName)
-      .findOne(result.insertedId);
+    return result;
   } catch (error) {
     throw new Error(error);
   }
 };
-export const CardModel = { createNew, findOneById, cardCollectionName };
+
+/**
+ *
+ * @param {Array of string card id} ids
+ */
+const deleteMany = async (ids) => {
+  try {
+    const transformIds = ids.map((i) => ObjectId(i));
+    const result = await getDB()
+      .collection(cardCollectionName)
+      .updateMany({ _id: { $in: transformIds } }, { $set: { _destroy: true } });
+    return result;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const CardModel = {
+  createNew,
+  findOneById,
+  cardCollectionName,
+  deleteMany,
+};

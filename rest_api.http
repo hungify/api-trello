@@ -7,13 +7,13 @@ POST {{baseUrl}}/boards HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "Hello world board"
+  "title": "New board"
 }
 
 ###
 
 # @name getFullBoard
-GET  {{baseUrl}}/boards/617553cbd5ada8f2c313f7e4 HTTP/1.1
+GET  {{baseUrl}}/boards/6176bfe63144a90cc8c10694 HTTP/1.1
 
 ### Columns ###
 
@@ -22,18 +22,44 @@ POST {{baseUrl}}/columns HTTP/1.1
 Content-Type: application/json
 
 {
-  "boardId": "617553cbd5ada8f2c313f7e4",
-  "title": "Column 2"
+  "boardId": "6176bfe63144a90cc8c10694",
+  "title": "Column 1"
 }
 
 ###
 
 # @name updateColumn
-PUT {{baseUrl}}/columns/617534425d7724d503803c83 HTTP/1.1
+PUT {{baseUrl}}/columns/61767f28c6f1b7659c916be7 HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "Hello world update"
+  "_id": "61767f28c6f1b7659c916be7",
+  "boardId": "617553cbd5ada8f2c313f7e4",
+  "title": "column 1",
+  "cardOrder": [
+    "61767f2cc6f1b7659c916be8"
+  ],
+  "createdAt": 1635155121424,
+  "updatedAt": null,
+  "_destroy": true
+}
+
+###
+
+# @name removeColumn
+PUT {{baseUrl}}/columns/61767f28c6f1b7659c916be7 HTTP/1.1
+Content-Type: application/json
+
+{
+  "_id": "61767f28c6f1b7659c916be7",
+  "boardId": "617553cbd5ada8f2c313f7e4",
+  "title": "column 1",
+  "cardOrder": [
+    "61767f2cc6f1b7659c916be8"
+  ],
+  "createdAt": 1635155121424,
+  "updatedAt": null,
+  "_destroy": true
 }
 
 ### Cars ###
