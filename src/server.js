@@ -1,5 +1,4 @@
 import express from 'express';
-import { env } from './config/environment';
 import { connectDB } from './config/mongodb';
 import { apiV1 } from './routes/v1';
 import morgan from 'morgan';
