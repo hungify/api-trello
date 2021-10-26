@@ -22,7 +22,7 @@ const bootServer = () => {
 
   app.use('/api/v1', apiV1);
 
-  app.listen(env.APP_PORT, env.APP_HOST, () => {
-    console.log('Server running on ', `http://${env.APP_HOST}:${env.APP_PORT}`);
+  app.listen(env.APP_PORT || process.env.PORT, () => {
+    console.log('Server running on ', `http://localhost:${process.env.PORT}`);
   });
 };

@@ -10,9 +10,10 @@
     "eslint": "eslint src",
     "clean": "rmdir /s /q build && mkdir build",
     "build-babel": "babel ./src -d ./build/src",
-    "build": "npm run clean && npm run build-babel",
-    "production": "npm run build && node ./build/src/server.js",
-    "dev": "nodemon --exec ./node_modules/.bin/babel-node ./src/server.js"
+    "build": "yarn run clean && yarn run build-babel",
+    "production": "yarn run build && node ./build/src/server.js",
+    "dev": "nodemon --exec ./node_modules/.bin/babel-node ./src/server.js",
+    "start": "node ./build/src/server.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
