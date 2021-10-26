@@ -1,6 +1,6 @@
 import express from 'express';
 import { CardController } from '~/controllers/Card.controller';
-import { CardValidation } from '~/validations/Card.validation';
+import { CardValidation } from '~/validations/card.validation';
 
 const router = express.Router();
 
