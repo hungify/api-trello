@@ -7,5 +7,5 @@ export const HttpStatusCode = {
 };
 export const WHITE_LIST_DOMAIN = [
   'http://localhost:3000',
-  'http://localhost:4000',
+  'https://trello-clone-web-e3ba1.web.app/',
 ];
