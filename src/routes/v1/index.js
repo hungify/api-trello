@@ -1,6 +1,6 @@
 import express from 'express';
 import { HttpStatusCode } from '~/utilities/constants';
-// import { boardRoutes } from './board.route';
+import { boardRoutes } from './board.route';
 // import { CardRoutes } from './card.route';
 // import { columnRoutes } from './column.route';
 
@@ -11,7 +11,7 @@ router.get('/status', (req, res) => {
 });
 
 /** Board APIs */
-// router.use('/boards', boardRoutes);
+router.use('/boards', boardRoutes);
 
 // /** Column APIs */
 // router.use('/columns', columnRoutes);
