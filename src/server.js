@@ -19,7 +19,7 @@ const bootServer = () => {
   app.use(express.json());
   app.use(morgan('dev'));
 
-  // app.use('/api/v1', apiV1);
+  app.use('/api/v1', apiV1);
   const port = process.env.APP_PORT || process.env.PORT;
   app.listen(port, () => {
     console.log('Server running on ', `http://localhost:${port}`);
