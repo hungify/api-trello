@@ -4,6 +4,7 @@ import { apiV1 } from './routes/v1';
 import morgan from 'morgan';
 import cors from 'cors';
 import { corsOptions } from './config/cors';
+import { env } from './config/environment';
 connectDB()
   .then(() => console.log('Connected DB'))
   .then(() => bootServer())
@@ -20,7 +21,7 @@ const bootServer = () => {
   app.use(morgan('dev'));
 
   app.use('/api/v1', apiV1);
-  const port = process.env.APP_PORT || process.env.PORT;
+  const port = env.APP_PORT || process.env.PORT;
   app.listen(port, () => {
     console.log('Server running on', `${port}`);
   });
