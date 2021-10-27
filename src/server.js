@@ -21,7 +21,7 @@ const bootServer = () => {
   app.use(morgan('dev'));
 
   app.use('/api/v1', apiV1);
-  const port = env.APP_PORT || process.env.PORT;
+  const port = process.env.PORT || env.APP_PORT;
   app.listen(port, () => {
     console.log('Server running on', `${port}`);
   });
