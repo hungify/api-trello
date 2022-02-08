@@ -7,7 +7,6 @@ import { corsOptions } from './config/cors';
 import { env } from './config/environment';
 require('dotenv').config();
 
-
 connectDB()
   .then(() => console.log('Connected DB'))
   .then(() => bootServer())
@@ -24,6 +23,15 @@ const bootServer = () => {
   app.use(morgan('dev'));
 
   app.use('/api/v1', apiV1);
+
+  app.get('/', (req, res, next) => {
+    return res.status(200).json({
+      status: 'Success',
+      message:
+        'The API Server is running!. Redirect to /api/v1 to see the API endpoints.',
+    });
+  });
+
   const port = process.env.PORT || env.APP_PORT;
   app.listen(port, () => {
     console.log('Server running on', `${port}`);

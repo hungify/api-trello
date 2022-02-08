@@ -6,8 +6,11 @@ import { columnRoutes } from './column.route';
 
 const router = express.Router();
 
-router.get('/status', (req, res) => {
-  res.status(HttpStatusCode.OK).json({ status: 'ok' });
+router.get('/', (req, res) => {
+  res.status(HttpStatusCode.OK).json({
+    status: 'Success',
+    message: 'The API Server is running!',
+  });
 });
 
 /** Board APIs */
