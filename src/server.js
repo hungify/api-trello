@@ -24,13 +24,13 @@ const bootServer = () => {
 
   app.use('/api/v1', apiV1);
 
-  // app.get('/', (req, res) => {
-  //   return res.status(200).json({
-  //     status: 'Success',
-  //     message:
-  //       'The API Server is running!. Redirect to /api/v1 to see the API endpoints.',
-  //   });
-  // });
+  app.get('/', (req, res) => {
+    return res.status(200).json({
+      status: 'Success',
+      message:
+        'The API Server is running!. Redirect to /api/v1 to see the API endpoints.',
+    });
+  });
 
   const port = process.env.PORT || env.APP_PORT;
   app.listen(port, () => {
