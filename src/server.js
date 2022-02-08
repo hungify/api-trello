@@ -5,6 +5,9 @@ import morgan from 'morgan';
 import cors from 'cors';
 import { corsOptions } from './config/cors';
 import { env } from './config/environment';
+require('dotenv').config();
+
+
 connectDB()
   .then(() => console.log('Connected DB'))
   .then(() => bootServer())
